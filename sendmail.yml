@@ -1,0 +1,5 @@
+FROM_NAME: Dummy Name
+FROM_EMAIL: dummy@example.com
+TO_NAME: Dummy Name
+TO_EMAIL: dummy@example.com
+SENDGRID_API_KEY: <<sendgrid_api_key>>
