@@ -1,20 +1,13 @@
 package contactmebackend
 
 import (
-	"flag"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"strings"
 	"testing"
 )
 
-var confArg = flag.String("config-file", "", "path of config file")
-
 func TestSendEmail(t *testing.T) {
-	// Read config file and pass to the function being tested
-	os.Args = []string{"cmd", "-config-file=" + *confArg}
-
 	// Mock data with the 'body' which will go over the REST, and 'wantStatus' which is the expected status for the data sent in 'body' field
 	tests := []struct {
 		body       string
