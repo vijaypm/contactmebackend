@@ -1,7 +1,6 @@
 package contactmebackend
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -20,12 +19,9 @@ type email struct {
 
 // SendEmail function sents email with the data coming from REST API
 func SendEmail(w http.ResponseWriter, r *http.Request) {
-	var e email
-	decoder := json.NewDecoder(r.Body)
-	err := decoder.Decode(&e)
-	if err != nil {
-		panic(err)
-	}
+	// Parse POST Form fields
+	r.ParseForm()
+	var e = &email{r.FormValue("email"), r.FormValue("name"), r.FormValue("message")}
 	// Prepare the email content
 	from := mail.NewEmail(os.Getenv("FROM_NAME"), os.Getenv("FROM_EMAIL"))
 	subject := "Contacted via SendEmail function"
